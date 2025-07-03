@@ -1,11 +1,61 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import frame0 from "../assets/frame_00000.jpg";
+import frame1 from "../assets/frame_00001.jpg";
 ---
 
 <Layout>
-	<Welcome />
+	<section>
+		<picture id="container">
+			<img
+				id="frame0"
+				src={frame0.src}
+				class="w-full h-full object-cover fixed"
+			/>
+			<img
+				id="frame1"
+				src={frame1.src}
+				class="w-full h-full object-cover fixed opacity-0"
+			/>
+		</picture>
+	</section>
 </Layout>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const tl = gsap.timeline({
+		scrollTrigger: {
+			start: "top top",
+			end: "+=50",
+			scrub: true,
+			pin: true,
+			onUpdate: (self) => {
+				console.log("Scroll progress:", self.progress.toFixed(3));
+			},
+		},
+	});
+
+	tl.to(
+		"#frame1",
+		{
+			opacity: 1,
+			duration: 1.2,
+			ease: "power2.out",
+			immediateRender: false,
+		},
+		0,
+	).to(
+		"#frame0",
+		{
+			opacity: 0,
+			duration: 1.2,
+			ease: "power2.out",
+			immediateRender: false,
+		},
+		0,
+	);
+</script>
