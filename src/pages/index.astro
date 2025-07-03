@@ -1,24 +1,105 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import frame0 from "../assets/frame_00000.jpg";
-import frame1 from "../assets/frame_00001.jpg";
+
+import frame0 from "../assets/frame_00.jpg";
+import frame1 from "../assets/frame_01.jpg";
+import frame2 from "../assets/frame_02.jpg";
+import frame3 from "../assets/frame_03.jpg";
+import frame4 from "../assets/frame_04.jpg";
+import frame5 from "../assets/frame_05.jpg";
+import frame6 from "../assets/frame_06.jpg";
+import frame7 from "../assets/frame_07.jpg";
+import frame8 from "../assets/frame_08.jpg";
+import frame9 from "../assets/frame_09.jpg";
+import frame10 from "../assets/frame_10.jpg";
+import frame11 from "../assets/frame_11.jpg";
+import frame12 from "../assets/frame_12.jpg";
 ---
 
 <Layout>
-	<section>
-		<picture id="container">
-			<img
-				id="frame0"
-				src={frame0.src}
-				class="w-full h-full object-cover fixed"
-			/>
-			<img
-				id="frame1"
-				src={frame1.src}
-				class="w-full h-full object-cover fixed opacity-0"
-			/>
-		</picture>
-	</section>
+	<picture id="container">
+		<img
+			id="frame0"
+			src={frame0.src}
+			class="inset-0 w-full h-full object-cover z-10 fixed"
+		/>
+		<img
+			id="frame1"
+			src={frame1.src}
+			class="inset-0 w-full h-full object-cover z-20 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame2"
+			src={frame2.src}
+			class="inset-0 w-full h-full object-cover z-30 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame3"
+			src={frame3.src}
+			class="inset-0 w-full h-full object-cover z-40 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame4"
+			src={frame4.src}
+			class="inset-0 w-full h-full object-cover z-50 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame5"
+			src={frame5.src}
+			class="inset-0 w-full h-full object-cover z-60 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame6"
+			src={frame6.src}
+			class="inset-0 w-full h-full object-cover z-70 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame7"
+			src={frame7.src}
+			class="inset-0 w-full h-full object-cover z-80 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame8"
+			src={frame8.src}
+			class="inset-0 w-full h-full object-cover z-90 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame9"
+			src={frame9.src}
+			class="inset-0 w-full h-full object-cover z-100 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame10"
+			src={frame10.src}
+			class="inset-0 w-full h-full object-cover z-110 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame11"
+			src={frame11.src}
+			class="inset-0 w-full h-full object-cover z-120 opacity-0 mix-blend-normal fixed"
+		/>
+		<img
+			id="frame12"
+			src={frame12.src}
+			class="inset-0 w-full h-full object-cover z-130 opacity-0 mix-blend-normal fixed"
+		/>
+	</picture>
+
+	<div id="overlay" class="inset-0 fixed z-140 bg-black opacity-0"></div>
+	<div
+		id="welcome"
+		class="inset-0 w-[35%] h-full object-cover z-150  mix-blend-normal fixed ml-36"
+	>
+		<h1 style={{ fontSize: "70px",  marginTop: "100px", marginLeft: "52px", lineHeight: 1.2 }}>
+			Guido Barandiaran
+		</h1>
+		<p style={{ fontSize: "26px", marginTop: "42px", marginLeft: "58px", lineHeight: 1.8 }}>
+			La motivación de todo lo que hago es una sola: La música.
+			<br />
+			Desde muy chico había algo en el sonido que me cautivaba y es lo que
+			me guía en mi camino, constantemente.
+		</p>
+	</div>
 </Layout>
 
 <script>
@@ -30,7 +111,7 @@ import frame1 from "../assets/frame_00001.jpg";
 	const tl = gsap.timeline({
 		scrollTrigger: {
 			start: "top top",
-			end: "+=50",
+			end: "+=1000",
 			scrub: true,
 			pin: true,
 			onUpdate: (self) => {
@@ -39,23 +120,69 @@ import frame1 from "../assets/frame_00001.jpg";
 		},
 	});
 
-	tl.to(
-		"#frame1",
-		{
-			opacity: 1,
-			duration: 1.2,
-			ease: "power2.out",
-			immediateRender: false,
-		},
-		0,
-	).to(
-		"#frame0",
-		{
-			opacity: 0,
-			duration: 1.2,
-			ease: "power2.out",
-			immediateRender: false,
-		},
-		0,
-	);
+	gsap.set("#welcome", { opacity: 0, y: 600 });
+
+	tl.to("#frame1", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame0", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame2", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame1", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame3", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame2", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame4", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame3", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame5", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame4", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame6", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame5", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame7", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame6", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame8", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame7", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame9", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame8", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame10", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to("#frame9", { opacity: 0, duration: 0.2, ease: "power4.inOut" }, ">")
+
+		.to("#frame11", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to(
+			"#frame10",
+			{ opacity: 0, duration: 0.2, ease: "power4.inOut" },
+			">",
+		)
+
+		.to("#frame12", { opacity: 1, duration: 0.2, ease: "power4.inOut" })
+		.to(
+			"#frame11",
+			{ opacity: 0, duration: 0.2, ease: "power4.inOut" },
+			">",
+		)
+
+		.to(
+			"#welcome",
+			{
+				opacity: 1,
+				y: 0,
+				duration: 7,
+				ease: "power1.out",
+			},
+			1,
+		)
+		.to(
+			"#overlay",
+			{
+				opacity: 0.8,
+				duration: 6,
+				ease: "power4.out",
+			},
+			3,
+		);
 </script>
